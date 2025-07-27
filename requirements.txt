@@ -1,0 +1,9 @@
+opencv-python==4.5.5.64
+face_recognition
+deepface
+mediapipe
+transformers
+torch
+tensorflow
+tqdm
+numpy<2.0

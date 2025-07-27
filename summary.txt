@@ -1,0 +1,1 @@
+ Detected emotions: disgust, fear, happy, sad, neutral, angry, surprise . Detected activities: Ambos os bracos levantados, Tchau, Mao no rosto, Braco direito levantado .
