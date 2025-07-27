@@ -1,1 +1,1 @@
- Detected emotions: disgust, fear, happy, sad, neutral, angry, surprise . Detected activities: Ambos os bracos levantados, Tchau, Mao no rosto, Braco direito levantado .
+ Tchau, Braco esquerdo levantado, Mao no rosto, Ambos os bracos levantados and Braco direito . Number of anomalies detected: 5 . Total frames analyzed: 3326 .

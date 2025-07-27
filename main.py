@@ -25,6 +25,7 @@ def analyze_video(video_path, output_path):
 
     detected_emotions = []
     detected_activities = []
+    detected_anomalies = []
 
     prev_left_hand_x = 0
     prev_right_hand_x = 0
@@ -97,6 +98,13 @@ def analyze_video(video_path, output_path):
                     prev_left_hand_x = left_wrist.x
                 if prev_right_hand_x == 0:
                     prev_right_hand_x = right_wrist.x
+                
+                # Anomaly detection for abrupt movements
+                if (abs(left_wrist.x - prev_left_hand_x) > 0.2) or \
+                   (abs(right_wrist.x - prev_right_hand_x) > 0.2):
+                    anomaly = "Movimento anomalo detectado"
+                    detected_anomalies.append(anomaly)
+                    cv2.putText(frame, anomaly, (50, 200), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
 
                 if (abs(left_wrist.x - prev_left_hand_x) > 0.05) or \
                    (abs(right_wrist.x - prev_right_hand_x) > 0.05):
@@ -119,7 +127,7 @@ def analyze_video(video_path, output_path):
     out.release()
     cv2.destroyAllWindows()
 
-    return detected_emotions, detected_activities
+    return detected_emotions, detected_activities, detected_anomalies, total_frames
 
 def summarize_text(text, max_length=730, min_length=30, do_sample=False):
     summarizer = pipeline("summarization")
@@ -130,9 +138,14 @@ if __name__ == "__main__":
     input_video_path = '/Users/fabio.lima/Workspace/AI/recognition-video/video.mp4'
     output_video_path = '/Users/fabio.lima/Workspace/AI/recognition-video/output_video.mp4'
     
-    emotions, activities = analyze_video(input_video_path, output_video_path)
+    emotions, activities, anomalies, frames_analyzed = analyze_video(input_video_path, output_video_path)
     
-    summary_text = f"Detected emotions: {', '.join(list(set(emotions)))}. Detected activities: {', '.join(list(set(activities)))}."
+    summary_text = (
+        f"Total frames analyzed: {frames_analyzed}. "
+        f"Detected emotions: {', '.join(list(set(emotions)))}. "
+        f"Detected activities: {', '.join(list(set(activities)))}. "
+        f"Number of anomalies detected: {len(anomalies)}."
+    )
     
     final_summary = summarize_text(summary_text)
     

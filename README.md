@@ -4,7 +4,7 @@ This project is designed to analyze video content to identify human emotions, ph
 
 ## 🧪 Objective
 
-The primary goal is to process a video file, perform real-time analysis on each frame to detect faces, emotions, and body poses, and then use this information to identify specific activities. Finally, it generates a summary of all detected emotions and activities throughout the video.
+The primary goal is to process a video file, perform real-time analysis on each frame to detect faces, emotions, and body poses, and then use this information to identify specific activities and anomalies. Finally, it generates a summary of all detected emotions and activities throughout the video.
 
 ## ✨ Features
 
@@ -14,8 +14,9 @@ The primary goal is to process a video file, perform real-time analysis on each 
     - Waving
     - Raising one or both arms
     - Touching the face
-- **Video Output:** Generates a new video file with bounding boxes, landmarks, and labels for detected emotions and activities overlaid on the original footage.
-- **Text Summary:** Creates a text file containing a summary of all unique emotions and activities detected in the video, using `Hugging Face Transformers` for summarization.
+- **Anomaly Detection:** Identifies abrupt or atypical movements that deviate from normal patterns.
+- **Video Output:** Generates a new video file with bounding boxes, landmarks, and labels for detected emotions, activities, and anomalies overlaid on the original footage.
+- **Text Summary:** Creates a text file containing a summary of all unique emotions and activities detected, the total number of frames analyzed, and a count of detected anomalies. This summary is generated using `Hugging Face Transformers`.
 
 ## ⚙️ How it Works
 
@@ -57,4 +58,4 @@ The primary goal is to process a video file, perform real-time analysis on each 
 ## 📤 Output
 
 - **`output_video.mp4`:** A video file showing the original video with all the annotations.
-- **`summary.txt`:** A text file containing the summary of detected emotions and activities.
+- **`summary.txt`:** A text file containing a detailed summary including total frames analyzed, detected emotions, activities, and the number of anomalies.
